@@ -126,7 +126,7 @@ public extension Color {
         var b: CGFloat = 0
         var a: CGFloat = 0
         
-        if self.respondsToSelector("getHue:saturation:brightness:alpha:") && CGColorGetNumberOfComponents(self.CGColor) == 4 {
+        if self.respondsToSelector(#selector(UIColor.getHue(_:saturation:brightness:alpha:))) && CGColorGetNumberOfComponents(self.CGColor) == 4 {
             self.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
         }
         
