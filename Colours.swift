@@ -145,16 +145,12 @@ public extension Color {
         
         // Transfrom XYZ to L*a*b
         let deltaF: TransformBlock = { f in
-            var transformation:CGFloat {
-                get {
-                    if (f > pow((6.0/29.0), 3.0)) {
-                        return pow(f, 1.0/3.0)
-                    } else {
-                        return pow((29.0/6.0), 2.0) * f + 4/29.0
-                    }
-                }
+            if f > pow((6.0/29.0), 3.0) {
+                return pow(f, 1.0/3.0)
+            } else {
+                let exp = (1/3) * pow((29.0/6.0), 2.0) * f
+                return exp + 4/29.0
             }
-            return (transformation)
         }
         let X = deltaF(x)
         let Y = deltaF(y)
